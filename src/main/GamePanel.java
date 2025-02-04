@@ -1,5 +1,7 @@
 package src.main;
 
+import src.Entity.Player;
+
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -11,36 +13,34 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Initial dimension and scale factor of sprites
      */
-    final int ORG_TILE_SIZE = 16;
-    final int SCALE = 3;
+    private final int ORG_TILE_SIZE = 16;
+    private final int SCALE = 3;
 
     /**
      * Scale up tiles for modern screens
      */
-    final int TILE_SIZE = ORG_TILE_SIZE * SCALE;
-    final int MAX_COL = 16;
-    final int MAX_ROW = 12;
+    private final int TILE_SIZE = ORG_TILE_SIZE * SCALE;
+    private final int MAX_COL = 16;
+    private final int MAX_ROW = 12;
 
     /**
      * Calculate window size
      */
-    final int SCREEN_WIDTH = TILE_SIZE * MAX_COL;
-    final int SCREEN_HEIGHT = TILE_SIZE * MAX_ROW;
+    private final int SCREEN_WIDTH = TILE_SIZE * MAX_COL;
+    private final int SCREEN_HEIGHT = TILE_SIZE * MAX_ROW;
 
-    InputHandler inputHandler = new InputHandler();
-    Thread gameThread;
+    private InputHandler input = new InputHandler();
+    private Thread gameThread;
 
     /**
      * Game FPS
      */
-    final int FPS = 60;
+    private final int FPS = 60;
 
     /**
-     * Initialise player position
+     * Initialise player
      */
-    int playerX = SCREEN_WIDTH/2;
-    int playerY = SCREEN_HEIGHT/2;
-    int playerSpeed = 4;
+    Player player = new Player(this, input);
 
     /**
      * Constructor for GamePanel class
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.LIGHT_GRAY);
         this.setDoubleBuffered(true);
-        this.addKeyListener(inputHandler);
+        this.addKeyListener(input);
         this.setFocusable(true);
     }
 
@@ -96,18 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Update logic of game
      */
     public void update() {
-        if (inputHandler.upPressed) {
-            playerY -= playerSpeed;
-        }
-        if (inputHandler.downPressed) {
-            playerY += playerSpeed;
-        }
-        if (inputHandler.leftPressed) {
-            playerX -= playerSpeed;
-        }
-        if (inputHandler.rightPressed) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     /**
@@ -115,12 +104,16 @@ public class GamePanel extends JPanel implements Runnable {
      * @param graphics the <code>Graphics</code> object to protect
      */
     public void paintComponent(Graphics graphics) {
+
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics;
+        player.draw(graphics2D);
 
-        graphics2D.setColor(Color.GREEN);
-        graphics2D.fillRect(playerX, playerY, TILE_SIZE, TILE_SIZE);
         graphics2D.dispose();
+    }
+
+    public int getTILE_SIZE() {
+        return TILE_SIZE;
     }
 }
