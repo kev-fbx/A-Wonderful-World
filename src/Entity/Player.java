@@ -23,10 +23,10 @@ public class Player extends Entity {
 
     private void getPlayerImg() {
         try {
-            setUp1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Player/Ghost.png"))));
-            setDown1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Player/Ghost.png"))));
-            setLeft1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Player/Ghost.png"))));
-            setRight1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Player/Ghost.png"))));
+            setUp1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/Ghost.png"))));
+            setDown1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/Ghost.png"))));
+            setLeft1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/Ghost.png"))));
+            setRight1(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/Ghost.png"))));
         } catch (IOException e) {
             System.out.println("getPlayerImage error");
             e.printStackTrace();
