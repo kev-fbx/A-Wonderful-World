@@ -1,14 +1,14 @@
-package src.Entity;
+package Entity;
 
-import src.main.GamePanel;
-import src.main.InputHandler;
+import main.GamePanel;
+import main.InputHandler;
 
 import java.awt.*;
 
 public class Player extends Entity {
 
-    private GamePanel gp;
-    private InputHandler input;
+    private final GamePanel gp;
+    private final InputHandler input;
 
     public Player(GamePanel gp, InputHandler input) {
         this.gp = gp;

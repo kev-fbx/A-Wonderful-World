@@ -1,6 +1,6 @@
-package src.main;
+package main;
 
-import src.Entity.Player;
+import Entity.Player;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int SCREEN_WIDTH = TILE_SIZE * MAX_COL;
     private final int SCREEN_HEIGHT = TILE_SIZE * MAX_ROW;
 
-    private InputHandler input = new InputHandler();
+    private final InputHandler input = new InputHandler();
     private Thread gameThread;
 
     /**
@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Initialise player
      */
     Player player = new Player(this, input);
-
+    
     /**
      * Constructor for GamePanel class
      */
