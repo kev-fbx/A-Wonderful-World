@@ -16,29 +16,29 @@ public class Player extends Entity {
         setDefaultValues();
     }
 
-    public void setDefaultValues() {
-        x = 100;
-        y = 100;
-        speed = 4;
+    private void setDefaultValues() {
+        setX(100);
+        setY(100);
+        setSpeed(4);
     }
 
     public void update() {
         if (input.isUpPressed()) {
-            y -= speed;
+            setY(getY() - getSpeed());
         }
         if (input.isDownPressed()) {
-            y += speed;
+            setY(getY() + getSpeed());
         }
         if (input.isLeftPressed()) {
-            x -= speed;
+            setX(getX() - getSpeed());
         }
         if (input.isRightPressed()) {
-            x += speed;
+            setX(getX() + getSpeed());
         }
     }
 
     public void draw(Graphics2D graphics2D) {
         graphics2D.setColor(Color.GREEN);
-        graphics2D.fillRect(x, y, gp.getTILE_SIZE(), gp.getTILE_SIZE());
+        graphics2D.fillRect(getX(), getY(), gp.getTILE_SIZE(), gp.getTILE_SIZE());
     }
 }
