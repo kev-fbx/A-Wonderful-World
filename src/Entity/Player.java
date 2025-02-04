@@ -61,10 +61,10 @@ public class Player extends Entity {
 
     public void draw(Graphics2D graphics2D) {
         BufferedImage img = switch (getDirection()) {
-            case "up" -> up1;
-            case "down" -> down1;
-            case "left" -> left1;
-            case "right" -> right1;
+            case "up" -> getUp1();
+            case "down" -> getDown1();
+            case "left" -> getLeft1();
+            case "right" -> getRight1();
             default -> null;
         };
 
