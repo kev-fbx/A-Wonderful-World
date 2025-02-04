@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 
 /**
- * Defines Panel for GUI
+ * Defines Panel for GUI and game loop logic
  */
 public class GamePanel extends JPanel implements Runnable {
 
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
      */
     int playerX = SCREEN_WIDTH/2;
     int playerY = SCREEN_HEIGHT/2;
-    int playerSpeed = 1;
+    int playerSpeed = 4;
 
     /**
      * Constructor for GamePanel class
@@ -68,31 +68,27 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
 
         double drawInterval = (double) 1000000000 / FPS;
-        double nextDrawTime = System.nanoTime() + drawInterval;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currTime;
 
         while (gameThread != null) {
 
-            update();
-            repaint();
+            currTime = System.nanoTime();
+            delta += (currTime - lastTime) / drawInterval;
+            lastTime = currTime;
 
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime /= 1000000;
-
-                if (remainingTime < 0) {
-                    remainingTime = 0;
-                }
-
-                Thread.sleep((long) remainingTime);
-
-                nextDrawTime += drawInterval;
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
             }
         }
     }
 
+    /**
+     * Update logic of game
+     */
     public void update() {
         if (inputHandler.upPressed) {
             playerY -= playerSpeed;
@@ -108,6 +104,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Draw method to display graphics
+     * @param graphics the <code>Graphics</code> object to protect
+     */
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
