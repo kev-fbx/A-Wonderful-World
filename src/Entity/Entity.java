@@ -7,7 +7,7 @@ public class Entity {
     private int x, y;
     private int speed;
 
-    private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     private String direction;
 
     public int getX() {
@@ -32,5 +32,13 @@ public class Entity {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }
