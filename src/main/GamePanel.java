@@ -62,12 +62,18 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Game loop function
+     * Main game loop method. Updates the game state and renders at a constant FPS
      */
     @Override
     public void run() {
 
+        /*
+          Time that passes for each frame, calculated as 1s/ frame
+         */
         double drawInterval = (double) 1000000000 / FPS;
+        /*
+          Normalised time that has passed since last frame
+         */
         double delta = 0;
         long lastTime = System.nanoTime();
         long currTime;
