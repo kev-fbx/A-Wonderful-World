@@ -23,16 +23,16 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (input.upPressed) {
+        if (input.isUpPressed()) {
             y -= speed;
         }
-        if (input.downPressed) {
+        if (input.isDownPressed()) {
             y += speed;
         }
-        if (input.leftPressed) {
+        if (input.isLeftPressed()) {
             x -= speed;
         }
-        if (input.rightPressed) {
+        if (input.isRightPressed()) {
             x += speed;
         }
     }
