@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     /**
      * Initialise player
      */
-    Player player = new Player(this, input);
+    private final Player player = new Player(this, input);
     
     /**
      * Constructor for GamePanel class
